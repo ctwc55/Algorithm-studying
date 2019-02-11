@@ -1,8 +1,10 @@
-#include <iostream>
-#include <stdio.h>
-#include <queue>
+#include <bits/stdc++.h>
+#define MAXN 15000000
 
 using namespace std;
+
+int dr[8]={-1,0,1,-1,1,-1,0,1};
+int dw[8]={-1,-1,-1,0,0,1,1,1};
 
 int nNode, nEdge, startNode;
 int check[1001], graph[1001][1001];
