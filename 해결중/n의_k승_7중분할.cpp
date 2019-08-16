@@ -1,5 +1,6 @@
 #include <bits/stdc++.h>
 #define MAXN 15000000
+#define MOD 1000000007
 
 using namespace std;
 
@@ -15,8 +16,8 @@ long long int nk(int n, int k){
     }
 
     memo[k]=1;
-    for(int i=1;i<=7-(k%7);i++) memo[k]=(memo[k]*nk(n,k/7))%1000000000;
-    for(int i=7-(k%7)+1;i<=7;i++) memo[k]=(memo[k]*nk(n,k/7+1))%1000000000;
+    for(int i=1;i<=7-(k%7);i++) memo[k]=(memo[k]*nk(n,k/7))%MOD;
+    for(int i=7-(k%7)+1;i<=7;i++) memo[k]=(memo[k]*nk(n,k/7+1))%MOD;
     cout<<k<<" : "<<memo[k]<<endl;
     return memo[k];
 }
@@ -27,23 +28,23 @@ int main()
     long long int small=1, ans=1;
     cin>>n>>k;
     for(i=1;i<=7;i++){
-        small*=n;
+        small*=n%MOD;
         memo[i]=small;
     }
     if(k<7) ans=memo[k];
     else{
         for(i=1;i<=7-(k%7);i++){
             if(i==7) break;
-            ans=(ans*nk(n,k/7))%1000000000;
+            ans=(ans*nk(n,k/7))%MOD;
             cout<<i<<" : "<<ans<<endl;
         }
         for(i=7-(k%7)+1;i<=7;i++){
             if(i==7) break;
-            ans=(ans*nk(n,k/7+1))%1000000000;
+            ans=(ans*nk(n,k/7+1))%MOD;
             cout<<i<<" : "<<ans<<endl;
         }
-        if(k%7==0) ans=(ans*nk(n,k/7))%1000000007;
-        else ans=(ans*nk(n,k/7+1))%1000000007;
+        if(k%7==0) ans=(ans*nk(n,k/7))%MOD;
+        else ans=(ans*nk(n,k/7+1))%MOD;
     }
     cout<<ans;
 }
