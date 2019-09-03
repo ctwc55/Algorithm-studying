@@ -48,7 +48,6 @@ int main()
                 heap[heap_size]=0;
                 heap_size--;
                 rmvRoot(1);
-                maxHeap(heap_size);
             }
         }
     }
