@@ -4,7 +4,7 @@ using namespace std;
 
 int N, M;
 map<string,int> m;
-vector<string> ans;
+set<string> ans;
 
 int main()
 {
@@ -17,14 +17,12 @@ int main()
     }
     for(int i=0;i<M;i++){
         cin>>name;
-        if(m.count(name)) ans.push_back(name);
+        if(m.count(name)) ans.insert(name);
     }
-
-    sort(ans.begin(),ans.end());
 
     printf("%d\n", ans.size());
     while(!ans.empty()){
-        cout<<ans.front()<<"\n";
+        cout<<*ans.begin()<<"\n";
         ans.erase(ans.begin());
     }
 }
