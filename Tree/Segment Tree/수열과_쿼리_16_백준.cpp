@@ -25,8 +25,6 @@ pair<int,int> update(vector< pair<int,int> > &seg_tree, int node, int s, int e, 
 
     cmp1=update(seg_tree,node*2,s,(s+e)/2,idx,chg);
     cmp2=update(seg_tree,node*2+1,(s+e)/2+1,e,idx,chg);
-    if(chg.second<seg_tree[node].second) return seg_tree[node]=chg;
-    if(chg.second==seg_tree[node].second) return seg_tree[node]=make_pair((chg.first<seg_tree[node].first)?chg.first:seg_tree[node].first,chg.second);
     return seg_tree[node]=make_pair((cmp1.second<=cmp2.second)?cmp1.first:cmp2.first,min(cmp1.second,cmp2.second));
 }
 
