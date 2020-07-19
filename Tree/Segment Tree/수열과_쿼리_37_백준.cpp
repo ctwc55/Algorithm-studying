@@ -28,14 +28,14 @@ pair<int,int> update(vector< pair<int,int> > &seg_tree, int node, int s, int e, 
     return seg_tree[node]=make_pair(cmp1.first+cmp2.first,cmp1.second+cmp2.second);
 }
 
-pair<int,int> findMinIdx(vector< pair<int,int> > &seg_tree, int node, int s, int e, int l, int r){
+pair<int,int> findEvenOdd(vector< pair<int,int> > &seg_tree, int node, int s, int e, int l, int r){
     pair<int,int> cmp1, cmp2;
 
     if(l>e||r<s) return {0,0};
     if(l<=s&&e<=r) return seg_tree[node];
 
-    cmp1=findMinIdx(seg_tree,node*2,s,(s+e)/2,l,r);
-    cmp2=findMinIdx(seg_tree,node*2+1,(s+e)/2+1,e,l,r);
+    cmp1=findEvenOdd(seg_tree,node*2,s,(s+e)/2,l,r);
+    cmp2=findEvenOdd(seg_tree,node*2+1,(s+e)/2+1,e,l,r);
     return {cmp1.first+cmp2.first,cmp1.second+cmp2.second};
 }
 
@@ -58,7 +58,7 @@ int main()
         scanf("%d %d %d", &q, &a, &b);
 
         if(q==1) update(seg_tree,1,0,N-1,a-1,{(b+1)%2,b%2});
-        else if(q==2) printf("%d\n", findMinIdx(seg_tree,1,0,N-1,a-1,b-1).first);
-        else printf("%d\n", findMinIdx(seg_tree,1,0,N-1,a-1,b-1).second);
+        else if(q==2) printf("%d\n", findEvenOdd(seg_tree,1,0,N-1,a-1,b-1).first);
+        else printf("%d\n", findEvenOdd(seg_tree,1,0,N-1,a-1,b-1).second);
     }
 }
