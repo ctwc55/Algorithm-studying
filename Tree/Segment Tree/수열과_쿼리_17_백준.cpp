@@ -19,10 +19,10 @@ int update(vector<int> &seg_tree, int node, int s, int e, int idx, int chg){
     return seg_tree[node]=min(cmp1,cmp2);
 }
 
-int findMinIdx(vector<int> &seg_tree, int node, int s, int e, int l, int r){
+int findMin(vector<int> &seg_tree, int node, int s, int e, int l, int r){
     if(l>e||r<s) return INF;
     if(l<=s&&e<=r) return seg_tree[node];
-    return min(findMinIdx(seg_tree,node*2,s,(s+e)/2,l,r),findMinIdx(seg_tree,node*2+1,(s+e)/2+1,e,l,r));
+    return min(findMin(seg_tree,node*2,s,(s+e)/2,l,r),findMin(seg_tree,node*2+1,(s+e)/2+1,e,l,r));
 }
 
 int main()
@@ -44,6 +44,6 @@ int main()
         scanf("%d %d %d", &q, &a, &b);
 
         if(q==1) update(seg_tree,1,0,N-1,a-1,b);
-        else printf("%d\n", findMinIdx(seg_tree,1,0,N-1,a-1,b-1));
+        else printf("%d\n", findMin(seg_tree,1,0,N-1,a-1,b-1));
     }
 }
